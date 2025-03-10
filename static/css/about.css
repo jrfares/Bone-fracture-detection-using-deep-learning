@@ -1,0 +1,45 @@
+/* ضبط الخطوط واتجاه الصفحة */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+    direction: rtl;
+    margin: 0;
+    padding: 0;
+}
+
+/* تنسيق الحاوية */
+.container {
+    background: white;
+    width: 50%;
+    margin: 100px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* تنسيق العنوان */
+h1 {
+    color: #333;
+}
+
+/* تنسيق الفقرة */
+p {
+    color: #666;
+}
+
+/* تنسيق الزر */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #0056b3;
+}

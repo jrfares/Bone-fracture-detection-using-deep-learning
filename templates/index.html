@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gleamer AI - Bone Health Assessment</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/index.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="/static/css/logo.png" alt="Gleamer AI">
+            <span>Gleamer AI</span>
+        </div>
+        <div class="nav-links">
+            <a href="/" class="active">Home</a>
+            <a href="/about">about</a>
+            <a href="/doctors">Doctors</a>
+            <a href="/how-it-work">how it work</a>
+            <a href="/contact">contact</a>
+        </div>
+        <button class="sign-in" >sign in</button>
+    </nav>
+
+    <main class="hero">
+        <div class="hero-content">
+            <h1>Find Out <span class="highlight">How Healthy</span><br><span class="highlight">Your Bones Are</span></h1>
+            <p>Here you can find out if your bones are fine or not. If not, you can know the type of damage and its exact location, and you can also get a proposal for treatment. All you have to do is enter an x-ray of the bone you want to ensure its safety</p>
+           <a  href="{{ url_for('getStarted') }}">
+            <button  class="get-started">Get Started</button>
+        </a> 
+        </div>
+        <div class="hero-image">
+            <img src="/static/css/medical-illustration.png" alt="Medical X-ray Analysis">
+        </div>
+    </main>
+</body>
+</html>

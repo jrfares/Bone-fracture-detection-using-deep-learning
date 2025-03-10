@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BoneAI Doctor</title>
+    <link rel="stylesheet" href="/static/css/index.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="/static/css/logo.png" alt="Gleamer AI">
+            <span>Gleamer AI</span>
+        </div>
+        <div class="nav-links">
+            <a href="{{ url_for('home') }}" class="active">Home</a>
+            <a href="/about">About</a>
+            <a href="#">Doctors</a>
+            <a href="#">How it works</a>
+            <a href="#">Contact</a>
+        </div>
+        <button class="sign-in">sign In</button>
+    </nav>
+    
+    <section class="hero">
+        <div class="hero-image">
+            <img src="/static/css/medical-illustration.png" alt="Medical Illustration">
+        </div>
+        <div class="hero-content">
+            <h1>fill the <span class="highlight">required</span> data</h1>
+            <p>You can upload your X-RAY here</p>
+            
+            <select class="get-started" id="fileType">
+                <option value="xray">X-Ray</option>
+                <option value="report">Report</option>
+            </select>
+            
+            <input type="file" id="fileInput" style="display: none;">
+            <button class="get-started" onclick="document.getElementById('fileInput').click();">Upload</button>
+            <button class="get-started" onclick="startProcessing()" id="requestBtn">Request</button>
+            <div id="processingContainer" style="display: none;">
+                <div class="progress-bar">
+                    <div id="progress" class="progress"></div>
+                </div>
+                <p id="progressText">Processing: 0%</p>
+            </div>
+            <p id="uploadStatus"></p>
+        </div>
+        
+    </section>
+
+
+    <style>
+    .progress-bar {
+        width: 100%;
+        height: 20px;
+        background-color: #f0f0f0;
+        border-radius: 10px;
+        margin: 20px 0;
+        overflow: hidden;
+    }
+    
+    .progress {
+        width: 0%;
+        height: 100%;
+        background-color: #007bff;
+        transition: width 0.5s ease-in-out;
+    }
+    
+    #progressText {
+        text-align: center;
+        color: #333;
+        font-weight: bold;
+    }
+    </style>
+
+    <script>
+        // Update accepted file types based on selection
+        document.getElementById('fileType').addEventListener('change', function() {
+            const fileInput = document.getElementById('fileInput');
+            if (this.value === 'xray') {
+                fileInput.setAttribute('accept', 'image/*');
+            } else {
+                fileInput.setAttribute('accept', '.pdf');
+            }
+        });
+
+        // تعديل معالج رفع الملف ليقوم بالرفع فقط
+        // تخزين مسار الصورة عند رفعها
+        let uploadedImagePath = '';
+        
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            let file = event.target.files[0];
+            if (file) {
+                let formData = new FormData();
+                formData.append("file", file);
+                formData.append("fileType", document.getElementById('fileType').value);
+    
+                fetch("/upload", {
+                    method: "POST",
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        throw new Error(data.error);
+                    }
+                    document.getElementById("uploadStatus").innerText = data.message;
+                    document.getElementById("uploadStatus").style.color = "green";
+                    uploadedImagePath = data.file_path; // تخزين مسار الصورة
+                })
+                .catch(error => {
+                    document.getElementById("uploadStatus").innerText = error.message;
+                    document.getElementById("uploadStatus").style.color = "red";
+                });
+            }
+        });
+    
+        // تعديل دالة المعالجة لتتضمن الانتقال إلى صفحة النتائج
+        function startProcessing() {
+            const processingContainer = document.getElementById('processingContainer');
+            const progressBar = document.getElementById('progress');
+            const progressText = document.getElementById('progressText');
+            const requestBtn = document.getElementById('requestBtn');
+            
+            processingContainer.style.display = 'block';
+            requestBtn.disabled = true;
+            
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 1;
+                progressBar.style.width = `${progress}%`;
+                progressText.textContent = `Processing: ${progress}%`;
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    progressText.textContent = 'Processing complete! Your results are ready.';
+                    progressText.style.color = '#28a745';
+                    requestBtn.disabled = false;
+                    
+                    // الانتقال إلى صفحة النتائج مع إرسال مسار الصورة
+                    setTimeout(() => {
+                        window.location.href = `/results?image=${encodeURIComponent(uploadedImagePath)}`;
+                    }, 1000);
+                }
+            }, 50);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <title> registration </title>
+        <link rel="stylesheet" type="text/css" href="/static/css/style-reg.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    
+      </head>
+    <body>
+        <section class="container">
+            <header>Register now  join us </header>
+            <form id="signInForm">
+              <div class="input-box">
+                  <label for="FullName">Full Name</label>
+                  <input type="text" id="FullName" placeholder="Enter full name" required>
+              </div>
+              <div class="input-box">
+                  <label for="EmailAdress">Email Address</label>
+                  <input type="text" id="EmailAdress" placeholder="Enter email address" required>
+              </div>
+              <div class="input-box">
+                  <label for="password">Password</label>
+                  <input type="password" id="password" placeholder="Enter your password" required>
+              </div>
+              <div class="column">
+                  <div class="input-box">
+                      <label for="PhoneNumber">Phone Number</label>
+                      <input type="number" id="PhoneNumber" placeholder="Enter phone number" required>
+                  </div>
+                  <div class="input-box">
+                      <label for="BirthDate">Birth Date</label>
+                      <input type="date" id="BirthDate" placeholder="Enter birth date" required>
+                  </div>
+              </div>
+              <div class="gender-box">
+                  <h3>Gender</h3>
+                  <div class="gender-option">
+                      <div class="gender">
+                          <input type="radio" id="check-male" name="gender" value="male" checked>
+                          <label for="check-male">Male</label>
+                      </div>
+                      <div class="gender">
+                          <input type="radio" id="check-female" name="gender" value="female">
+                          <label for="check-female">Female</label>
+                      </div>
+                      <div class="gender">
+                          <input type="radio" id="check-other" name="gender" value="other">
+                          <label for="check-other">Prefer not to say</label>
+                      </div>
+                  </div>
+              </div>
+              <div class="input-box address">
+                  <label for="Address">Address</label>
+                  <input type="text" id="Address" placeholder="Enter street address" required>
+                  <div class="column">
+                      <div class="select-box">
+                          <label for="Country">Country</label>
+                          <select id="Country" required>
+                              <option hidden>Country</option>
+                              <option>Egypt</option>
+                              <option>Iraq</option>
+                              <option>Emirates</option>
+                              <option>Qatar</option>
+                              <option>Kuwait</option>
+                              <option>Lebanon</option>
+                              <option>Syria</option>
+                              <option>Saudi Arabia</option>
+                              <option>Palestine</option>
+                          </select>
+                      </div>
+                      <div class="input-box">
+                          <label for="City">City</label>
+                          <input type="text" id="City" placeholder="Enter your city" required>
+                      </div>
+                  </div>
+                  <div class="column">
+                      <div class="input-box">
+                          <label for="Region">Region</label>
+                          <input type="text" id="Region" placeholder="Enter your region" required>
+                      </div>
+                      <div class="input-box">
+                          <label for="PostalCode">Postal Code</label>
+                          <input type="number" id="PostalCode" placeholder="Enter postal code" required>
+                      </div>
+                  </div>
+              </div>
+              <button type="submit">Submit</button>
+          </form>
+          </section>
+            <footer>
+              
+            </footer>
+            <script src="login.js"></script>
+    </body>
+</html>
