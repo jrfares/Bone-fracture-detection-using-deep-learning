@@ -4,7 +4,7 @@ import os
 
 # Initialize Flask app
 app = Flask(__name__)
-
+#Thabet hahahaha
 # Configure upload folder and allowed extensions
 UPLOAD_FOLDER = 'static/uploads/'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'pdf'}
